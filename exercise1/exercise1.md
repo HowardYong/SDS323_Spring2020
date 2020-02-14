@@ -17,26 +17,6 @@ library(mosaic)
 library(tidyverse)
 ```
 
-The code to resolve the problem is shown below.
-
-``` r
-ABIA = read_csv('ABIA.csv')
-summary = summary(ABIA)
-
-#Build new data frames for (flight vs. delays) and (flight vs. months)
-flight_delay = ABIA %>%
-  group_by(UniqueCarrier, Month) %>%
-  summarize(TotalDelays = sum(ArrDelay, na.rm=TRUE))
-flight_delay
-flight_delay_df = data.frame(flight_delay)
-
-flight_vs_month = ABIA %>%
-  group_by(UniqueCarrier, Month) %>%
-  tally()
-flight_vs_month
-flight_month_df = data.frame(flight_vs_month)
-```
-
 The plot for observing the results are shown below.
 
 ![](exercise1_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
@@ -53,27 +33,6 @@ file.
 3.  Whose creatinine clearance rate is healthier (higher) for their age:
     a 40-year-old with a rate of 135, or a 60-year-old with a rate of
     112?
-
-<!-- end list -->
-
-    ## 
-    ## Call:
-    ## lm(formula = creatclear ~ age, data = creatinine)
-    ## 
-    ## Residuals:
-    ##      Min       1Q   Median       3Q      Max 
-    ## -18.2249  -4.6175   0.2221   4.7212  15.8221 
-    ## 
-    ## Coefficients:
-    ##              Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept) 147.81292    1.37965  107.14   <2e-16 ***
-    ## age          -0.61982    0.03475  -17.84   <2e-16 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
-    ## Residual standard error: 6.911 on 155 degrees of freedom
-    ## Multiple R-squared:  0.6724, Adjusted R-squared:  0.6703 
-    ## F-statistic: 318.2 on 1 and 155 DF,  p-value: < 2.2e-16
 
 #### Problem 1:
 
@@ -119,16 +78,14 @@ predict(lrm, new_data)
     ## 110.624
 
 According to the regression model, a 40-year-old with a rate of 135 is
-healthier (higher) than a 60-year-old with a rate of 112.
+healthier (higher) than a 60-year-old with a rate of 112. The rate of
+135 mL/min is significantly higher than the predicted rate of 123.0203
+mL/min for an age of 40 years old. This is better than the rate of 112
+mL/min compared to a predicted rate of 110.624 mL/min for an age of 60
+years old. The following is a plot of clearance rate vs. age, along with
+the fitted model used to reach the aforementioned
+conclusions.
 
-The rate of 135 mL/min is significantly higher than the predicted rate
-of 123.0203 mL/min for an age of 40 years old.
-
-This is better than the rate of 112 mL/min compared to a predicted rate
-of 110.624 mL/min for an age of 60 years old
-
-The following is a plot of clearance rate vs. age, along with the fitted
-model used to reach the aforementioned conclusions.
 ![](exercise1_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->![](exercise1_files/figure-gfm/unnamed-chunk-10-2.png)<!-- -->
 
 ## Green buildings
@@ -146,12 +103,6 @@ The respective code used to explore each categorical variable is shown
 below.
 
 #### Amenities
-
-##### Part 0: Load the dataset
-
-``` r
-greenbuildings = read_csv('greenbuildings.csv')
-```
 
 ##### Part 1: Tabulate comparisons for the categorical variable
 

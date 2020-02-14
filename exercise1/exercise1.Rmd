@@ -22,9 +22,7 @@ library(mosaic)
 library(tidyverse)
 ```
 
-The code to resolve the problem is shown below.
-
-```{r, warning=FALSE, results='hide', message=FALSE}
+```{r, warning=FALSE, results='hide', message=FALSE, echo=FALSE}
 ABIA = read_csv('ABIA.csv')
 summary = summary(ABIA)
 
@@ -65,7 +63,7 @@ The following questions were addressed with utilizing the creatinine.csv file.
 2. How does creatinine clearance rate change with age? (This should be a number with units ml/minute per year.)
 3. Whose creatinine clearance rate is healthier (higher) for their age: a 40-year-old with a rate of 135, or a 60-year-old with a rate of 112?
 
-```{r, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, message=FALSE, echo=FALSE, results='hide'}
 creatinine = read_csv('creatinine.csv')
 # age: patient's age in years. (X)
 # creatclear: patient's creatine clearance rate in mL/minute, a measure of kidney health (higher is better). (Y)
@@ -96,13 +94,8 @@ predict(lrm, new_data)
 new_data = data.frame(age = c(60))
 predict(lrm, new_data)
 ```
-According to the regression model, a 40-year-old with a rate of 135 is healthier (higher) than a 60-year-old with a rate of 112. 
+According to the regression model, a 40-year-old with a rate of 135 is healthier (higher) than a 60-year-old with a rate of 112. The rate of 135 mL/min is significantly higher than the predicted rate of 123.0203 mL/min for an age of 40 years old. This is better than the rate of 112 mL/min compared to a predicted rate of 110.624 mL/min for an age of 60 years old. The following is a plot of clearance rate vs. age, along with the fitted model used to reach the aforementioned conclusions.
 
-The rate of 135 mL/min is significantly higher than the predicted rate of 123.0203 mL/min for an age of 40 years old. 
-
-This is better than the rate of 112 mL/min compared to a predicted rate of 110.624 mL/min for an age of 60 years old
-
-The following is a plot of clearance rate vs. age, along with the fitted model used to reach the aforementioned conclusions.
 ```{r, echo=FALSE}
 plot(creatclear ~ age, data=creatinine)
 plotModel(lrm)
@@ -117,8 +110,7 @@ To approach this problem, the possibility of confounding variables impacting the
 The respective code used to explore each categorical variable is shown below.
 
 #### Amenities
-##### Part 0: Load the dataset
-```{r, message=FALSE}
+```{r, message=FALSE, echo=FALSE}
 greenbuildings = read_csv('greenbuildings.csv')
 ```
 
